@@ -11,8 +11,8 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect:'/',
-  failureRedirect: '/login'
+  successRedirect: '/',
+  failureRedirect: '/u/login'
 }))
 
 router.get('/register', (req, res) => {
@@ -21,13 +21,38 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
+  const errors = []
+  if (!email && !password && !confirmPassword) {
+    errors.push({ message: 'Please fill in Email, password and confirm password.' })
+  } else if (!email) {
+    errors.push({ message: 'Please fill in Email.' })
+  } else if (!password) {
+    errors.push({ message: 'Please fill in password.' })
+  } else if (!confirmPassword) {
+    errors.push({ message: 'Please fill in confirm password.' })
+  }
+
+  if ((password.length && confirmPassword.length) && (password !== confirmPassword)) {
+    errors.push({ message: 'Password or confirm password incorrect.' })
+  }
+
+  if (errors.length) {
+    return res.render('register', {
+      errors,
+      name,
+      email,
+      password,
+      confirmPassword
+    })
+  }
+
   User.findOne({ where: { email } }).then(user => {
     if (user) {
-      console.log('User already exists')
+      errors.push({ message: 'This email is registered.' })
       return res.render('register', {
-        name, 
-        email, 
-        password, 
+        name,
+        email,
+        password,
         confirmPassword
       })
     }
@@ -45,8 +70,9 @@ router.post('/register', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-  req.logOut()
-  res.redirect('/login')
+  req.logout()
+  req.flash('success_msg', 'You are now logged out.')
+  res.redirect('/u/login')
 })
 
 module.exports = router
