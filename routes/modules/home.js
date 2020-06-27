@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
         Todo.findAll({
           raw: true,
           nest: true,
-          where: { UserId, isDone: false }
+          where: { UserId, isDone: false, isTrash: false }
         })
           .then(todos => resolve(todos))
           .catch(err => console.log(err))
@@ -26,21 +26,30 @@ router.get('/', (req, res) => {
         Todo.findAll({
           raw: true,
           nest: true,
-          where: { UserId, isDone: true }
+          where: { UserId, isDone: true, isTrash: false }
         })
           .then(dones => resolve(dones))
+          .catch(err => console.log(err))
+      })
+
+      const findAllTrash = new Promise((resolve, reject) => {
+        Todo.findAll({
+          raw: true,
+          nest: true,
+          where: { UserId, isTrash: true }
+        })
+          .then(trashes => resolve(trashes))
           .catch(err => console.log(err))
       })
 
       async function setHomePage() {
         const todos = await findAllTodos
         const dones = await findAllDone
-        console.log(todos)
-        res.render('index', { todos, dones })
+        const trashes = await findAllTrash
+        res.render('index', { todos, dones, trashes })
       }
 
       setHomePage()
-
     })
     .catch(error => res.status(422).json(error))
 })

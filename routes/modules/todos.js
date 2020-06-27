@@ -71,7 +71,12 @@ router.delete('/:id', (req, res) => {
   const id = req.params.id
 
   return Todo.findOne({ where: { id, UserId } })
-    .then(todo => todo.destroy())
+    .then(todo => {
+      todo.isTrash = true
+      console.log(todo.get())
+      return todo.save()
+      //todo.destroy()
+    })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
