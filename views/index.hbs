@@ -14,7 +14,7 @@
       </div>
       {{#each todos}}
       <div class="todos rounded d-flex justify-content-between">
-       <div class="item-title">{{ this.name }}</div>
+       <a class="item-title" href="/todos/{{ this.id }}/done">{{ this.name }}</a>
         <div class="dropdown todos-dropdown shadow-none">
           <button class="btn todos-menu-btn shadow-none" type="button" id="dropdownMenu2" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i>

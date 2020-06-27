@@ -31,7 +31,6 @@ transition-duration: 0.3s;
   border: 1px solid rgba(200, 200, 200);
   margin: 0.35rem 0;
   padding: 0 1rem;
-  cursor: pointer;
 }
 
 .item-title {
@@ -39,6 +38,15 @@ transition-duration: 0.3s;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
+  color: black;
+  transition-duration: 0.3s;
+}
+
+.item-title:hover {
+  text-decoration: none;
+  font-weight: bolder;
+  color: black;
+  transition-duration: 0.3s;
 }
 
 .done .item-title, .trash .item-title {
@@ -62,6 +70,7 @@ transition-duration: 0.3s;
 .todos-dropdown {
   opacity: 0;
   transition-duration: 0.3s;
+  background-color: #ffffff;
 }
 
 .header-wrapper-right .fas {
@@ -76,11 +85,6 @@ transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
 
-.todos-menu-btn {
-  border: 1px solid rgba(200, 200, 200);
-  padding: 0.01rem 0.3rem;
-}
-
 .todos:hover {
   background-color: rgb(235, 236, 237, 0.3);
 }
@@ -88,6 +92,15 @@ transition-duration: 0.3s;
 .todos:hover .todos-dropdown {
  opacity: 1;
  transition-duration: 0.3s;
+}
+
+.todos-menu-btn {
+  border: 1px solid rgba(200, 200, 200);
+  padding: 0.01rem 0.3rem;
+}
+
+.todos-menu-btn:hover {
+  background-color: rgb(210, 211, 212, 0.3);
 }
 
 .fa-ellipsis-h, .fa-plus, .new-btn, .new-btn:hover, .counter {

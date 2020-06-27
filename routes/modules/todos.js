@@ -64,6 +64,20 @@ router.put('/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
+// DONE with one click
+router.get('/:id/done', (req, res) => {
+  const UserId = req.user.id
+  const id = req.params.id
+
+  return Todo.findOne({ where: { id, UserId } })
+   .then(todo => {
+     todo.isDone = true
+     todo.save()
+   })
+   .then(() => res.redirect('/'))
+   .catch(err => console.log(err))
+})
+
 
 // SOFT DELETE
 router.delete('/:id', (req, res) => {
