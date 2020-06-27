@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
       async function setHomePage() {
         const todos = await findAllTodos
         const dones = await findAllDone
-
+        console.log(todos)
         res.render('index', { todos, dones })
       }
 

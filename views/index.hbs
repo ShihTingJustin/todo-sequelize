@@ -23,7 +23,7 @@
             <a href="/todos/{{ this.id }}" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>detail</a>
             <a href="/todos/{{ this.id }}/edit" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>edit</a>
             <form action="/todos/{{ this.id }}?_method=DELETE" method="POST" onclick="return deleteCheck()">
-              <button class="dropdown-item delete-btn"><i class="fas fa-minus-circle mr-3"></i>delete</button>
+              <button class="dropdown-item delete-btn"><i class="fas fa-trash-alt mr-3"></i>delete</button>
             </form>
           </div>
         </div>
@@ -48,8 +48,8 @@
         </div>
       </div>
       {{#each dones}}
-      <div class="todos rounded d-flex justify-content-between">
-        <div class="item-title">{{ this.name }}</div>
+      <div class="done todos rounded d-flex justify-content-between">
+        <div class="item-title">✔️&nbsp&nbsp{{ this.name }}</div>
         <div class="dropdown todos-dropdown shadow-none">
           <button class="btn todos-menu-btn shadow-none" type="button" id="dropdownMenu2" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i>
@@ -58,7 +58,7 @@
             <a href="/todos/{{ this.id }}" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>detail</a>
             <a href="/todos/{{ this.id }}/edit" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>edit</a>
             <form action="/todos/{{ this.id }}?_method=DELETE" method="POST" onclick="return deleteCheck()">
-              <button class="dropdown-item delete-btn"><i class="fas fa-minus-circle mr-3"></i>delete</button>
+              <button class="dropdown-item delete-btn"><i class="fas fa-trash-alt mr-3"></i>delete</button>
             </form>
           </div>
         </div>
