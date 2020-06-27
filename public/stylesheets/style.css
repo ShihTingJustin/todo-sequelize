@@ -1,3 +1,80 @@
+/* index page */
+.card-header-wrapper {
+  height: 2.5rem;
+  padding: 0 5px;
+}
+
+.card-footer-wrapper {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  padding: 0 8px;
+}
+
+.new-btn:hover {
+  text-decoration: none;
+}
+
+.card-footer-wrapper {
+transition-duration: 0.3s;
+}
+
+.card-footer-wrapper:hover {
+background-color: rgb(235, 236, 237);
+transition-duration: 0.3s;
+}
+
+.todos {
+  display: flex;
+  align-items: center;
+  height: 2.8rem;
+  border: 1px solid rgba(200, 200, 200);
+  margin: 0.35rem 0;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.dropdown {
+  opacity: 0;
+  transition-duration: 0.3s;
+}
+
+.todos-menu-btn {
+  border: 1px solid rgba(200, 200, 200);
+  padding: 0.01rem 0.3rem;
+}
+
+.todos:hover {
+  background-color: rgb(235, 236, 237, 0.3);
+}
+
+.todos:hover .dropdown {
+ opacity: 1;
+ transition-duration: 0.3s;
+}
+
+.fa-ellipsis-h, .fa-plus, .new-btn, .new-btn:hover {
+  color:  rgba(200, 200, 200);
+}
+
+.todo-card .card-title {
+  background-color: rgba(252, 170, 170, 0.747);
+}
+
+.done-card .card-title {
+  background-color: rgba(122, 218, 171, 0.747);
+}
+
+.trash-card .card-title {
+  background-color: rgba(219, 219, 219, 0.747);
+}
+
+.todo-card .card-title, .done-card .card-title, .trash-card .card-title {
+  padding: 0.2rem 0.7rem;
+}
+
+/* index page */
+
 /* login page */
 .login-input-group {
   margin: 3rem 0;

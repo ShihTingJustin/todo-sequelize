@@ -1,3 +1,71 @@
+<div class="container row mx-auto mt-3 mt-md-5 rounded">
+  <div class="area row mt-5 pt-1 pb-5 mx-auto col-12 col-sm-10 col-mm-10 col-lg-10"
+    style="border-top: 1px solid rgba(200, 200, 200);">
+    <div class="todo-card col-12 col-sm-12 col-md-4 col-lg-4">
+      <div class="card-header-wrapper row d-flex justify-content-between align-items-center m-auto">
+        <div class="card-title rounded my-auto">To Do</div>
+        <div class="card-function">
+          <i class="fas fa-ellipsis-h"></i>
+          <i class="fas fa-plus"></i>
+        </div>
+      </div>
+      {{#each todos}}
+      <div class="todos rounded d-flex justify-content-between">{{ this.name }}
+        <div class="dropdown shadow-none">
+          <button class="btn todos-menu-btn shadow-none" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"><i class="fas fa-ellipsis-h"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <a href="/todos/{{ this.id }}" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>detail</a>
+            <a href="/todos/{{ this.id }}/edit" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>edit</a>
+            <form action="/todos/{{ this.id }}?_method=DELETE" method="POST" onclick="return deleteCheck()">
+              <button class="dropdown-item delete-btn"><i class="fas fa-minus-circle mr-3"></i>delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      <a class="new-btn" href="/todos/new">
+      <div class="card-footer-wrapper">
+        <i class="fas fa-plus"></i>&nbsp&nbspNew
+        </div>
+        </a>
+    </div>
+
+    <div class="done-card col-12 col-sm-12 col-md-4 col-lg-4">
+      <div class="card-header-wrapper row d-flex justify-content-between align-items-center m-auto">
+        <div class="card-title rounded my-auto">Done</div>
+        <div class="card-function">
+          <i class="fas fa-ellipsis-h"></i>
+          <i class="fas fa-plus"></i>
+        </div>
+      </div>
+      <div class="todos d-flex justify-content-between">開發後端進階功能
+        <div class="todo-function">
+          <i class="fas fa-ellipsis-h"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="trash-card col-12 col-sm-12 col-md-4 col-lg-4">
+      <div class="card-header-wrapper row d-flex justify-content-between align-items-center m-auto">
+        <div class="card-title rounded my-auto">Trash</div>
+        <div class="card-function">
+          <i class="fas fa-ellipsis-h"></i>
+          <i class="fas fa-plus"></i>
+        </div>
+      </div>
+      <div class="todos d-flex justify-content-between">開發後端進階功能
+        <div class="todo-function">
+          <i class="fas fa-ellipsis-h"></i>
+        </div>
+      </div>      
+    </div>
+
+  </div>
+</div>
+
+
 <a href="/todos/new" class="btn btn-primary mb-3">Create</a>
 <ul class="list-group">
   {{#each todos}}
