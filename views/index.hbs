@@ -7,8 +7,20 @@
           <div class="card-title rounded my-auto">To Do</div>
           <div class="counter font-weight-bold">{{ todos.length }}</div>
         </div>
-        <div class="header-wrapper-right">
-          <i class="fas fa-ellipsis-h rounded"></i>
+        <div class="header-wrapper-right d-flex justify-content-end align-items-center">
+          <div class="dropdown tod-dropdown shadow-none" style="margin: 0 -0.5rem;">
+            <button class="btn todo-menu-btn shadow-none" type="button" id="dropdownMenu2" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h rounded"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <form action="/todos/all_done" method="POST" onclick="return checkBeforeAllDone()">
+                <button class="dropdown-item delete-btn ml-1"><i class="far fa-check-square mr-4"></i>All done</button>
+              </form>
+              <form action="/todos/all_trash" method="POST" onclick="return checkBeforeTrash()">
+                <button class="dropdown-item delete-btn"><i class="fas fa-trash-alt mr-3"></i>Delete all</button>
+              </form>
+            </div>
+          </div>
           <a href="/todos/new"><i class="fas fa-plus rounded"></i></a>
         </div>
       </div>

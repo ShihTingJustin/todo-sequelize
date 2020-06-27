@@ -116,4 +116,29 @@ router.get('/:id/undo', (req, res) => {
     .catch(err => console.log(err))
 })
 
+
+// Todos all done
+router.post('/all_done', (req, res) => {
+  const UserId = req.user.id
+  return Todo.update(
+    { isDone: true },
+    { where: { UserId, isDone: false, isTrash: false } }
+  )
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
+
+
+// all todos move to trash
+router.post('/all_trash', (req, res) => {
+  const UserId = req.user.id
+  return Todo.update(
+    { isTrash: true },
+    { where: { UserId, isDone: false, isTrash: false } }
+  )
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
+
+
 module.exports = router
