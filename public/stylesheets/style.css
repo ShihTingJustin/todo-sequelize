@@ -30,8 +30,15 @@ transition-duration: 0.3s;
   height: 2.8rem;
   border: 1px solid rgba(200, 200, 200);
   margin: 0.35rem 0;
-  padding: 0 8px;
+  padding: 0 1rem;
   cursor: pointer;
+}
+
+.item-title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
 .todos-dropdown {
@@ -81,7 +88,7 @@ transition-duration: 0.3s;
   background-color: rgba(219, 219, 219, 0.747);
 }
 
-.todo-card .card-title, .done-card .card-title, .trash-card .card-title, .counter {
+.card-title, .counter {
   font-size: small;
   padding: 0.2rem 0.7rem;
 }
