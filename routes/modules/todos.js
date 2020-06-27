@@ -65,7 +65,7 @@ router.put('/:id', (req, res) => {
 })
 
 
-//DELETE
+// SOFT DELETE
 router.delete('/:id', (req, res) => {
   const UserId = req.user.id
   const id = req.params.id
@@ -73,9 +73,24 @@ router.delete('/:id', (req, res) => {
   return Todo.findOne({ where: { id, UserId } })
     .then(todo => {
       todo.isTrash = true
-      console.log(todo.get())
       return todo.save()
       //todo.destroy()
+    })
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
+
+
+// UNDO
+router.get('/:id/undo', (req, res) => {
+  const UserId = req.user.id
+  const id = req.params.id
+
+  return Todo.findOne({ where: { id, UserId } })
+    .then(todo => {
+      todo.isDone = false
+      todo.isTrash = false
+      return todo.save()
     })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))

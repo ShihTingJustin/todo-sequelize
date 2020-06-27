@@ -44,7 +44,6 @@
         </div>
         <div class="header-wrapper-right">
           <i class="fas fa-ellipsis-h rounded"></i>
-          <i class="fas fa-plus rounded"></i>
         </div>
       </div>
       {{#each dones}}
@@ -55,6 +54,7 @@
             aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <a href="/todos/{{ this.id }}/undo" class="dropdown-item undo-btn"><i class="fas fa-redo-alt mr-3"></i></i>undo</a>
             <a href="/todos/{{ this.id }}" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>detail</a>
             <a href="/todos/{{ this.id }}/edit" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>edit</a>
             <form action="/todos/{{ this.id }}?_method=DELETE" method="POST" onclick="return deleteCheck()">
@@ -74,7 +74,6 @@
       </div>
       <div class="header-wrapper-right">
         <i class="fas fa-ellipsis-h rounded"></i>
-        <i class="fas fa-plus rounded"></i>
       </div>
     </div>
     {{#each trashes}}
@@ -85,8 +84,8 @@
           aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <a href="/todos/{{ this.id }}" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>detail</a>
-          <a href="/todos/{{ this.id }}/edit" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>edit</a>
+          <a href="/todos/{{ this.id }}/undo" class="dropdown-item edit-btn"><i class="fas fa-redo-alt mr-3"></i></i>undo</a>
+          <a href="/todos/{{ this.id }}" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>detail</a>          
           <form action="/todos/{{ this.id }}?_method=DELETE" method="POST" onclick="return deleteCheck()">
             <button class="dropdown-item delete-btn"><i class="fas fa-trash-alt mr-3"></i>delete</button>
           </form>
