@@ -3,17 +3,20 @@
     style="border-top: 1px solid rgba(200, 200, 200);">
     <div class="todo-card col-12 col-sm-12 col-md-4 col-lg-4">
       <div class="card-header-wrapper row d-flex justify-content-between align-items-center m-auto">
-        <div class="card-title rounded my-auto">To Do</div>
-        <div class="card-function">
-          <i class="fas fa-ellipsis-h"></i>
-          <i class="fas fa-plus"></i>
+        <div class="header-wrapper-left d-flex">
+          <div class="card-title rounded my-auto">To Do</div>
+          <div class="counter font-weight-bold">{{ todos.length }}</div>
+        </div>
+        <div class="header-wrapper-right">
+          <i class="fas fa-ellipsis-h rounded"></i>
+          <i class="fas fa-plus rounded"></i>
         </div>
       </div>
       {{#each todos}}
       <div class="todos rounded d-flex justify-content-between">{{ this.name }}
-        <div class="dropdown shadow-none">
-          <button class="btn todos-menu-btn shadow-none" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"><i class="fas fa-ellipsis-h"></i>
+        <div class="dropdown todos-dropdown shadow-none">
+          <button class="btn todos-menu-btn shadow-none" type="button" id="dropdownMenu2" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
             <a href="/todos/{{ this.id }}" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>detail</a>
@@ -26,10 +29,10 @@
       </div>
       {{/each}}
       <a class="new-btn" href="/todos/new">
-      <div class="card-footer-wrapper">
-        <i class="fas fa-plus"></i>&nbsp&nbspNew
+        <div class="card-footer-wrapper">
+          <i class="fas fa-plus"></i>&nbsp&nbspNew
         </div>
-        </a>
+      </a>
     </div>
 
     <div class="done-card col-12 col-sm-12 col-md-4 col-lg-4">
@@ -59,7 +62,7 @@
         <div class="todo-function">
           <i class="fas fa-ellipsis-h"></i>
         </div>
-      </div>      
+      </div>
     </div>
 
   </div>

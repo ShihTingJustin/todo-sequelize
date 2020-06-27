@@ -34,8 +34,20 @@ transition-duration: 0.3s;
   cursor: pointer;
 }
 
-.dropdown {
+.todos-dropdown {
   opacity: 0;
+  transition-duration: 0.3s;
+}
+
+.header-wrapper-right .fas {
+  cursor: pointer;
+  padding: 0.3rem 0.35rem;
+  transition-duration: 0.3s;
+}
+
+.header-wrapper-right .fas:hover {
+  border: none;
+  background-color: rgb(235, 236, 237);
   transition-duration: 0.3s;
 }
 
@@ -48,12 +60,12 @@ transition-duration: 0.3s;
   background-color: rgb(235, 236, 237, 0.3);
 }
 
-.todos:hover .dropdown {
+.todos:hover .todos-dropdown {
  opacity: 1;
  transition-duration: 0.3s;
 }
 
-.fa-ellipsis-h, .fa-plus, .new-btn, .new-btn:hover {
+.fa-ellipsis-h, .fa-plus, .new-btn, .new-btn:hover, .counter {
   color:  rgba(200, 200, 200);
 }
 
@@ -69,7 +81,8 @@ transition-duration: 0.3s;
   background-color: rgba(219, 219, 219, 0.747);
 }
 
-.todo-card .card-title, .done-card .card-title, .trash-card .card-title {
+.todo-card .card-title, .done-card .card-title, .trash-card .card-title, .counter {
+  font-size: small;
   padding: 0.2rem 0.7rem;
 }
 

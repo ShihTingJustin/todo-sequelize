@@ -22,10 +22,10 @@
       <div class="header-right font-weight-bold d-flex">
         {{#if isAuthenticated}}
         <a href="/records/create">
-          <button type="submit" class="btn btn-outline-light align-middle">Create</button>
+          <button type="submit" class="btn btn-outline-dark align-middle">Create</button>
         </a>
         <div class="dropdown show nav-dropdown ml-3">
-          <button class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+          <button class="btn btn-outline-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-circle mr-2"></i>
             {{#if user.name }}{{ user.name }}{{else}}{{ user.email }}{{/if}}
