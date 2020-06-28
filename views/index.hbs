@@ -13,11 +13,11 @@
               aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h rounded"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <form action="/todos/all_done" method="POST" onclick="return checkBeforeAllDone()">
-                <button class="dropdown-item delete-btn ml-1"><i class="far fa-check-square mr-4"></i>All done</button>
+              <form action="/todos/all_done?_method=PUT" method="POST" onclick="return checkBeforeAllDone()">
+                <button class="dropdown-item ml-1"><i class="far fa-check-square mr-4"></i>All done</button>
               </form>
-              <form action="/todos/all_trash" method="POST" onclick="return checkBeforeTrash()">
-                <button class="dropdown-item delete-btn"><i class="fas fa-trash-alt mr-3"></i>Delete all</button>
+              <form action="/todos/all_trash?_method=PUT" method="POST" onclick="return checkBeforeTrash()">
+                <button class="dropdown-item"><i class="fas fa-trash-alt mr-3"></i>Trash all</button>
               </form>
             </div>
           </div>
@@ -26,16 +26,18 @@
       </div>
       {{#each todos}}
       <div class="todos rounded d-flex justify-content-between">
-       <a class="item-title" href="/todos/{{ this.id }}/done">{{ this.name }}</a>
-        <div class="dropdown todos-dropdown shadow-none">
-          <button class="btn todos-menu-btn shadow-none" type="button" id="dropdownMenu2" data-toggle="dropdown"
+        <form action="/todos/{{ this.id }}/done?_method=PUT" method="post">
+       <button class="item-title" style="background-color: transparent; border: none;">{{ this.name }}</button>
+       </form>
+        <div class="dropdown todos-dropdown">
+          <button class="btn todos-menu-btn" type="button" id="dropdownMenu2" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i>
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <a href="/todos/{{ this.id }}" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>detail</a>
-            <a href="/todos/{{ this.id }}/edit" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>edit</a>
+          <div class="dropdown-menu " aria-labelledby="dropdownMenu2">
+            <a href="/todos/{{ this.id }}" class="dropdown-item"><i class="fas fa-pen mr-3"></i>Detail</a>
+            <a href="/todos/{{ this.id }}/edit" class="dropdown-item"><i class="fas fa-pen mr-3"></i>Edit</a>
             <form action="/todos/{{ this.id }}?_method=DELETE" method="POST" onclick="return deleteCheck()">
-              <button class="dropdown-item delete-btn"><i class="fas fa-trash-alt mr-3"></i>delete</button>
+              <button class="dropdown-item"><i class="fas fa-trash-alt mr-3"></i>Trash It</button>
             </form>
           </div>
         </div>
@@ -66,11 +68,13 @@
             aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <a href="/todos/{{ this.id }}/undo" class="dropdown-item undo-btn"><i class="fas fa-redo-alt mr-3"></i></i>undo</a>
-            <a href="/todos/{{ this.id }}" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>detail</a>
-            <a href="/todos/{{ this.id }}/edit" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>edit</a>
+            <form action="/todos/{{ this.id }}/undo?_method=PUT" method="post">
+            <button class="dropdown-item"><i class="fas fa-redo-alt mr-3"></i>Undo</button>
+            </form>
+            <a href="/todos/{{ this.id }}" class="dropdown-item"><i class="fas fa-pen mr-3"></i>Detail</a>
+            <a href="/todos/{{ this.id }}/edit" class="dropdown-item"><i class="fas fa-pen mr-3"></i>Edit</a>
             <form action="/todos/{{ this.id }}?_method=DELETE" method="POST" onclick="return deleteCheck()">
-              <button class="dropdown-item delete-btn"><i class="fas fa-trash-alt mr-3"></i>delete</button>
+              <button class="dropdown-item delete-btn"><i class="fas fa-trash-alt mr-3"></i>Trash It</button>
             </form>
           </div>
         </div>
@@ -85,7 +89,16 @@
         <div class="counter font-weight-bold">{{ trashes.length }}</div>
       </div>
       <div class="header-wrapper-right">
-        <i class="fas fa-ellipsis-h rounded"></i>
+        <div class="dropdown tod-dropdown shadow-none" style="margin: 0 -0.5rem;">
+          <button class="btn todo-menu-btn shadow-none" type="button" id="dropdownMenu2" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h rounded"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">            
+            <form action="/todos/all?_method=DELETE" method="POST" onclick="return checkBeforeDelete()">
+              <button class="dropdown-item delete-btn"><i class="fas fa-minus-circle mr-3"></i>Delete all</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
     {{#each trashes}}
@@ -96,10 +109,12 @@
           aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <a href="/todos/{{ this.id }}/undo" class="dropdown-item edit-btn"><i class="fas fa-redo-alt mr-3"></i></i>undo</a>
-          <a href="/todos/{{ this.id }}" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>detail</a>          
+          <form action="/todos/{{ this.id }}/undo?_method=PUT" method="post">
+            <button class="dropdown-item"><i class="fas fa-redo-alt mr-3"></i>Undo</button>
+          </form>
+          <a href="/todos/{{ this.id }}" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>Detail</a>          
           <form action="/todos/{{ this.id }}?_method=DELETE" method="POST" onclick="return checkBeforeDelete()">
-            <button class="dropdown-item delete-btn"><i class="fas fa-trash-alt mr-3"></i>delete</button>
+            <button class="dropdown-item delete-btn"><i class="fas fa-minus-circle mr-3"></i>Delete</button>
           </form>
         </div>
       </div>

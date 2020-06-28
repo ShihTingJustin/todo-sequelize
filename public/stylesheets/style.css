@@ -38,15 +38,17 @@ transition-duration: 0.3s;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
-  color: black;
   transition-duration: 0.3s;
 }
 
 .item-title:hover {
   text-decoration: none;
   font-weight: bolder;
-  color: black;
   transition-duration: 0.3s;
+}
+
+.item-title:focus {
+  outline: none;
 }
 
 .done .item-title, .trash .item-title {

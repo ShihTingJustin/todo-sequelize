@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const db = require('../../models')
+const e = require('express')
 const Todo = db.Todo
 
 //CREATE
@@ -33,6 +34,28 @@ router.get('/:id', (req, res) => {
 
 
 //UPDATE
+// Todos all done
+router.put('/all_done', (req, res) => {
+  const UserId = req.user.id
+  return Todo.update(
+    { isDone: true },
+    { where: { UserId, isDone: false, isTrash: false } }
+  )
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
+
+// all todos move to trash
+router.put('/all_trash', (req, res) => {
+  const UserId = req.user.id
+  return Todo.update(
+    { isTrash: true },
+    { where: { UserId, isDone: false, isTrash: false } }
+  )
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
+
 router.get('/:id/edit', (req, res) => {
   const UserId = req.user.id
   const id = req.params.id
@@ -44,6 +67,27 @@ router.get('/:id/edit', (req, res) => {
     .catch(err => console.log(err))
 })
 
+// UNDO
+router.put('/:id/undo', (req, res) => {
+  const UserId = req.user.id
+  const id = req.params.id
+
+  return Todo.findOne({ where: { id, UserId } })
+    .then(todo => {
+      if (todo.isDone && todo.isTrash) {
+        todo.isTrash = false
+      } else if (todo.isDone) {
+        todo.isDone = false
+      } else if (todo.isTrash) {
+        todo.isTrash = false
+      }
+      return todo.save()
+    })
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
+
+// done with checkbox
 router.put('/:id', (req, res) => {
   const UserId = req.user.id
   const id = req.params.id
@@ -64,9 +108,8 @@ router.put('/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
-
 // DONE with one click
-router.get('/:id/done', (req, res) => {
+router.put('/:id/done', (req, res) => {
   const UserId = req.user.id
   const id = req.params.id
 
@@ -81,6 +124,16 @@ router.get('/:id/done', (req, res) => {
 
 
 // DELETE
+// all todos delete
+router.delete('/all', (req, res) => {
+  const UserId = req.user.id
+
+  return Todo.destroy({ where: { UserId, isTrash: true } })
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
+
+// one todo delete
 router.delete('/:id', (req, res) => {
   const UserId = req.user.id
   const id = req.params.id
@@ -96,46 +149,6 @@ router.delete('/:id', (req, res) => {
         return todo.destroy()
       }
     })
-    .then(() => res.redirect('/'))
-    .catch(err => console.log(err))
-})
-
-
-// UNDO
-router.get('/:id/undo', (req, res) => {
-  const UserId = req.user.id
-  const id = req.params.id
-
-  return Todo.findOne({ where: { id, UserId } })
-    .then(todo => {
-      todo.isDone = false
-      todo.isTrash = false
-      return todo.save()
-    })
-    .then(() => res.redirect('/'))
-    .catch(err => console.log(err))
-})
-
-
-// Todos all done
-router.post('/all_done', (req, res) => {
-  const UserId = req.user.id
-  return Todo.update(
-    { isDone: true },
-    { where: { UserId, isDone: false, isTrash: false } }
-  )
-    .then(() => res.redirect('/'))
-    .catch(err => console.log(err))
-})
-
-
-// all todos move to trash
-router.post('/all_trash', (req, res) => {
-  const UserId = req.user.id
-  return Todo.update(
-    { isTrash: true },
-    { where: { UserId, isDone: false, isTrash: false } }
-  )
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })

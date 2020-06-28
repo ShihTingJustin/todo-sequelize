@@ -13,5 +13,5 @@ function checkBeforeAllDone () {
 }
 
 function checkBeforeTrash () {
-  return window.confirm('Do you want to throw all todos to trash?')
+  return window.confirm('Do you want to move all todos to trash?')
 }
