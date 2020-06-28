@@ -1,4 +1,4 @@
-# Expense Tracker
+# Todo List (sequelize)
 A simple todo list built with Node.js and Express.
 
 ## Features
