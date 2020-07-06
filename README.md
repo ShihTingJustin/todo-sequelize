@@ -5,7 +5,7 @@ A simple todo list built with Node.js and Express.
 1. Add, read, edit, delete todo
 2. Todos all done with one-click
 3. Move all todos to trash with one-click
-4. Login and create account 
+4. Log-in with local or Facebook account
 
 ![](https://i.imgur.com/sgrwcxB.png)
 
@@ -19,12 +19,12 @@ $ git clone https://github.com/ShihTingJustin/todo-sequelize.git
 ```
 $ npm install
 ```
-3. Download env.example from [here](https://bit.ly/3eUqqhA)
+3. Download env.example from [here](https://bit.ly/38vtO09)
 
 4. Put **env.example** in root directory and rename to **.env** in editor 
 
 5. Enter your facebook ID and SECRET in **.env**
-(You can apply from [here](https://developers.facebook.com/))
+(You can apply from [facebook](https://developers.facebook.com/))
 
 6. Use seed data 
 ```
